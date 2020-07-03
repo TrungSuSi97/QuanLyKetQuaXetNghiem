@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyKetQuaXetNghiemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BacSi">
+    <Key>
+      <PropertyRef Name="BacSiID" />
+    </Key>
+    <Property Name="BacSiID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="300" />
+    <Property Name="KhoaID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="BenhNhan">
+    <Key>
+      <PropertyRef Name="BenhNhanID" />
+    </Key>
+    <Property Name="BenhNhanID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MaBenhNhan" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SID" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="100" />
+    <Property Name="NamSinh" Type="date" />
+    <Property Name="GioiTinh" Type="bit" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="300" />
+    <Property Name="SoTheBHYT" Type="varchar" MaxLength="21" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DonVi">
+    <Key>
+      <PropertyRef Name="DonViID" />
+    </Key>
+    <Property Name="DonViID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TenDonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="STT" Type="int" />
+  </EntityType>
+  <EntityType Name="Khoa">
+    <Key>
+      <PropertyRef Name="KhoaID" />
+    </Key>
+    <Property Name="KhoaID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TenKhoa" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="KyThuatVien">
+    <Key>
+      <PropertyRef Name="KyThuatVienID" />
+    </Key>
+    <Property Name="KyThuatVienID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="LoaiXetNghiem">
+    <Key>
+      <PropertyRef Name="LoaiXetNghiemID" />
+    </Key>
+    <Property Name="LoaiXetNghiemID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TenXetNghiem">
+    <Key>
+      <PropertyRef Name="TenXetNghiemID" />
+    </Key>
+    <Property Name="TenXetNghiemID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TenXetNghiem" Type="nvarchar" MaxLength="100" />
+    <Property Name="LoaiXetNghiemID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="XetNghiem">
+    <Key>
+      <PropertyRef Name="XetNghiemID" />
+    </Key>
+    <Property Name="XetNghiemID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BenhNhanID" Type="uniqueidentifier" />
+    <Property Name="BacSiID" Type="uniqueidentifier" />
+    <Property Name="TrangThai" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="KyThuatVienID" Type="uniqueidentifier" />
+    <Property Name="LoaiXetNghiemID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="XetNghiemChiTiet">
+    <Key>
+      <PropertyRef Name="XetNghiemChiTietID" />
+    </Key>
+    <Property Name="XetNghiemChiTietID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="XetNghiemID" Type="uniqueidentifier" />
+    <Property Name="KetQua" Type="decimal" Precision="8" Scale="2" />
+    <Property Name="KhoangThamChieu" Type="varchar" MaxLength="50" />
+    <Property Name="DonViID" Type="uniqueidentifier" />
+    <Property Name="TenXetNghiemID" Type="uniqueidentifier" />
+  </EntityType>
+  <Association Name="FK_BacSi_Khoa">
+    <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+    <End Role="BacSi" Type="Self.BacSi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khoa">
+        <PropertyRef Name="KhoaID" />
+      </Principal>
+      <Dependent Role="BacSi">
+        <PropertyRef Name="KhoaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TenXetNghiem_TenXetNghiem">
+    <End Role="LoaiXetNghiem" Type="Self.LoaiXetNghiem" Multiplicity="0..1" />
+    <End Role="TenXetNghiem" Type="Self.TenXetNghiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiXetNghiem">
+        <PropertyRef Name="LoaiXetNghiemID" />
+      </Principal>
+      <Dependent Role="TenXetNghiem">
+        <PropertyRef Name="LoaiXetNghiemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XetNghiem_BacSi">
+    <End Role="BacSi" Type="Self.BacSi" Multiplicity="0..1" />
+    <End Role="XetNghiem" Type="Self.XetNghiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BacSi">
+        <PropertyRef Name="BacSiID" />
+      </Principal>
+      <Dependent Role="XetNghiem">
+        <PropertyRef Name="BacSiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XetNghiem_BenhNhan">
+    <End Role="BenhNhan" Type="Self.BenhNhan" Multiplicity="0..1" />
+    <End Role="XetNghiem" Type="Self.XetNghiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BenhNhan">
+        <PropertyRef Name="BenhNhanID" />
+      </Principal>
+      <Dependent Role="XetNghiem">
+        <PropertyRef Name="BenhNhanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XetNghiem_KyThuatVien">
+    <End Role="KyThuatVien" Type="Self.KyThuatVien" Multiplicity="0..1" />
+    <End Role="XetNghiem" Type="Self.XetNghiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KyThuatVien">
+        <PropertyRef Name="KyThuatVienID" />
+      </Principal>
+      <Dependent Role="XetNghiem">
+        <PropertyRef Name="KyThuatVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XetNghiem_LoaiXetNghiem">
+    <End Role="LoaiXetNghiem" Type="Self.LoaiXetNghiem" Multiplicity="0..1" />
+    <End Role="XetNghiem" Type="Self.XetNghiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiXetNghiem">
+        <PropertyRef Name="LoaiXetNghiemID" />
+      </Principal>
+      <Dependent Role="XetNghiem">
+        <PropertyRef Name="LoaiXetNghiemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XetNghiemChiTiet_DonVi">
+    <End Role="DonVi" Type="Self.DonVi" Multiplicity="0..1" />
+    <End Role="XetNghiemChiTiet" Type="Self.XetNghiemChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonVi">
+        <PropertyRef Name="DonViID" />
+      </Principal>
+      <Dependent Role="XetNghiemChiTiet">
+        <PropertyRef Name="DonViID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XetNghiemChiTiet_TenXetNghiem">
+    <End Role="TenXetNghiem" Type="Self.TenXetNghiem" Multiplicity="0..1" />
+    <End Role="XetNghiemChiTiet" Type="Self.XetNghiemChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TenXetNghiem">
+        <PropertyRef Name="TenXetNghiemID" />
+      </Principal>
+      <Dependent Role="XetNghiemChiTiet">
+        <PropertyRef Name="TenXetNghiemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_XetNghiemChiTiet_XetNghiem">
+    <End Role="XetNghiem" Type="Self.XetNghiem" Multiplicity="0..1" />
+    <End Role="XetNghiemChiTiet" Type="Self.XetNghiemChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="XetNghiem">
+        <PropertyRef Name="XetNghiemID" />
+      </Principal>
+      <Dependent Role="XetNghiemChiTiet">
+        <PropertyRef Name="XetNghiemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyKetQuaXetNghiemModelStoreContainer">
+    <EntitySet Name="BacSi" EntityType="Self.BacSi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BenhNhan" EntityType="Self.BenhNhan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonVi" EntityType="Self.DonVi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Khoa" EntityType="Self.Khoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KyThuatVien" EntityType="Self.KyThuatVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiXetNghiem" EntityType="Self.LoaiXetNghiem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TenXetNghiem" EntityType="Self.TenXetNghiem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XetNghiem" EntityType="Self.XetNghiem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XetNghiemChiTiet" EntityType="Self.XetNghiemChiTiet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BacSi_Khoa" Association="Self.FK_BacSi_Khoa">
+      <End Role="Khoa" EntitySet="Khoa" />
+      <End Role="BacSi" EntitySet="BacSi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TenXetNghiem_TenXetNghiem" Association="Self.FK_TenXetNghiem_TenXetNghiem">
+      <End Role="LoaiXetNghiem" EntitySet="LoaiXetNghiem" />
+      <End Role="TenXetNghiem" EntitySet="TenXetNghiem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XetNghiem_BacSi" Association="Self.FK_XetNghiem_BacSi">
+      <End Role="BacSi" EntitySet="BacSi" />
+      <End Role="XetNghiem" EntitySet="XetNghiem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XetNghiem_BenhNhan" Association="Self.FK_XetNghiem_BenhNhan">
+      <End Role="BenhNhan" EntitySet="BenhNhan" />
+      <End Role="XetNghiem" EntitySet="XetNghiem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XetNghiem_KyThuatVien" Association="Self.FK_XetNghiem_KyThuatVien">
+      <End Role="KyThuatVien" EntitySet="KyThuatVien" />
+      <End Role="XetNghiem" EntitySet="XetNghiem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XetNghiem_LoaiXetNghiem" Association="Self.FK_XetNghiem_LoaiXetNghiem">
+      <End Role="LoaiXetNghiem" EntitySet="LoaiXetNghiem" />
+      <End Role="XetNghiem" EntitySet="XetNghiem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XetNghiemChiTiet_DonVi" Association="Self.FK_XetNghiemChiTiet_DonVi">
+      <End Role="DonVi" EntitySet="DonVi" />
+      <End Role="XetNghiemChiTiet" EntitySet="XetNghiemChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XetNghiemChiTiet_TenXetNghiem" Association="Self.FK_XetNghiemChiTiet_TenXetNghiem">
+      <End Role="TenXetNghiem" EntitySet="TenXetNghiem" />
+      <End Role="XetNghiemChiTiet" EntitySet="XetNghiemChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XetNghiemChiTiet_XetNghiem" Association="Self.FK_XetNghiemChiTiet_XetNghiem">
+      <End Role="XetNghiem" EntitySet="XetNghiem" />
+      <End Role="XetNghiemChiTiet" EntitySet="XetNghiemChiTiet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,82 @@
+﻿@model IList<QuanLyKetQuaXetNghiem.ViewModel.XetNghiemChiTietViewModel>
+@{
+    ViewBag.Title = "Analysis";
+}
+
+<h2>Bệnh nhân @ViewBag.TenBN</h2>
+<h3>Xét nghiệm @ViewBag.TenLXN</h3>
+
+@using (Html.BeginForm("Analysis", "Analysis"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <table id="tblImportDetail" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr class="warning">
+                    <th style="width:40px" class="text-center">STT</th>
+                    <th style="width:150px" class="text-center">Tên Xét Nghiệm</th>
+                    <th style="width:150px" class="text-center">Kết Quả</th>
+                    <th style="width:150px" class="text-center">Khoảng Tham Chiếu</th>
+                    <th style="width:150px" class="text-center">Đơn Vị</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model != null)
+                {
+                    for (int i = 0, j = 1; i < Model.Count; i++, j++)
+                    {
+                        <tr>
+                            @*@Html.TextBoxFor(m => Model[i].KetQua)*@
+                            @Html.HiddenFor(m => Model[i].XetNghiemID)
+                            @Html.HiddenFor(m => Model[i].LoaiXetNghiemID)
+                            <td style="width: 40px" class="text-center">
+                                @j
+                            <td style="width: 150px">
+                                @Html.HiddenFor(m => Model[i].TenXetNghiemID)
+                                @Html.DisplayFor(m => Model[i].TenXetNghiem)
+                            </td>
+                            <td style="width: 100px" class="text-center">
+                                @Html.TextBoxFor(m => Model[i].KetQua, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => Model[i].KetQua, "", new { @class = "text-danger" })
+                            </td>
+                            <td style="width: 100px" class="text-center">
+                                @Html.TextBoxFor(m => Model[i].KhoangThamChieu, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => Model[i].KhoangThamChieu, "", new { @class = "text-danger" })
+                            </td>
+                            <td style="text-align:center">
+                                @Html.DropDownListFor(p => Model[i].DonViID, (IEnumerable<SelectListItem>)ViewBag.DonViIdList, "--Trống--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => Model[i].DonViID, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-10 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Edit", new { id = ViewBag.BenhNhanID })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

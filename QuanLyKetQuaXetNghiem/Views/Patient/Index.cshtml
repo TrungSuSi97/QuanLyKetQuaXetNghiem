@@ -1,0 +1,65 @@
+﻿@model IEnumerable<QuanLyKetQuaXetNghiem.BenhNhan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Thông tin bệnh nhân</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-info" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Họ Tên
+        </th>
+        <th>
+            Năm Sinh
+        </th>
+        <th>
+            Giới Tính
+        </th>
+        <th>
+            Địa Chỉ
+        </th>
+        <th>
+            Số Thẻ BHYT
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NamSinh)
+            </td>
+            <td>
+                @if (item.GioiTinh.ToString() == "True")
+                {
+                    <text>Nam</text>
+                }
+                else
+                {
+                    <text>Nữ</text>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoTheBHYT)
+            </td>
+            @*<td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.BenhNhanID }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.BenhNhanID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.BenhNhanID })
+            </td>*@
+        </tr>
+    }
+
+</table>

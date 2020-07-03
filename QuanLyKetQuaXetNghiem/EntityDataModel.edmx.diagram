@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="501db1dddf694b3494d49b58ae9c895b" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.BacSi" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.BenhNhan" Width="1.5" PointX="0.75" PointY="16.375" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.DonVi" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.Khoa" Width="1.5" PointX="1.5" PointY="13.875" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.KyThuatVien" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.LoaiXetNghiem" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.125" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.TenXetNghiem" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.XetNghiem" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="QuanLyKetQuaXetNghiemModel.XetNghiemChiTiet" Width="1.5" PointX="5.25" PointY="6.25" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_BacSi_Khoa" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_XetNghiem_BacSi" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_XetNghiem_BenhNhan" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_XetNghiemChiTiet_DonVi" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_XetNghiem_KyThuatVien" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_TenXetNghiem_TenXetNghiem" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_XetNghiem_LoaiXetNghiem" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_XetNghiemChiTiet_TenXetNghiem" />
+        <AssociationConnector Association="QuanLyKetQuaXetNghiemModel.FK_XetNghiemChiTiet_XetNghiem" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<QuanLyKetQuaXetNghiem.ViewModel.XetNghiemBacSiBenhNhanViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Thông tin bệnh nhân xét nghiệm</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Họ Tên Bệnh Nhân
+        </th>
+        <th>
+            Họ Tên Bác Sĩ Chỉ Định
+        </th>
+        <th>
+            Ngày Tạo
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTenBenhNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTenBacSi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.ActionLink("Xét Nghiệm", "Edit", new { id = item.BenhNhanID })
+            </td>
+        </tr>
+    }
+
+</table>
+

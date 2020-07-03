@@ -1,0 +1,41 @@
+﻿@model IEnumerable<QuanLyKetQuaXetNghiem.ViewModel.XetNghiemBacSiBenhNhanViewModel>
+<form id="frmList" action="Save" method="post">
+    <div class="form-horizontal">
+        <table id="tblImportDetail" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr class="warning">
+                    <th style="width:40px" class="text-center">STT</th>
+                    <th style="width:150px" class="text-center">Tên Loại Xét Nghiệm</th>
+                    <th style="width:150px" class="text-center">Trạng Thái</th>
+                    <th style="width:150px" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    int i = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    i++;
+                    <tr>
+                        <input type="hidden" data-xetnghiemid="@item.XetNghiemID" />
+                        <td style="width: 40px" class="text-center">
+                            @i
+                        <td style="width: 150px">
+                            @Html.DisplayFor(m => item.TenLoaiXetNghiem)
+                        </td>
+                        <td style="width: 100px" class="text-center action">
+                            @Html.DisplayFor(m => item.TrangThai)
+                        </td>
+                        <td style="text-align:center">
+                            @*<button type="button" id="@item.XetNghiemID" name="@item.TenLoaiXetNghiem" class="btn btn-info">Xét Nghiệm</button>*@
+                            @Html.ActionLink("Làm Xét Nghiệm", "Analysis", new { XetNghiemID = item.XetNghiemID }, new { @class = "btn btn-info" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
+

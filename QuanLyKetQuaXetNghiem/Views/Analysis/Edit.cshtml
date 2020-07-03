@@ -1,0 +1,93 @@
+﻿@model QuanLyKetQuaXetNghiem.ViewModel.BenhNhanViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div>
+    <div class="row head">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <h2>Chi tiết thông tin bệnh nhân xét nghiệm</h2>
+        </div>
+    </div>
+    <hr class="custom">
+    <div class="row">
+        @using (Html.BeginForm("Save", null, FormMethod.Post, new { id = "frmHeader" }))
+        {
+            <div class=" col-md-6">
+                <div class="panel panel-default" style="min-height: 195px;">
+                    <div class="panel-body form-horizontal">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaBenhNhan, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            <div class="col-md-8 col-sm-8 col-xs-12 control-label text-left" style="padding-right:250px">
+                                @Html.DisplayFor(model => model.MaBenhNhan, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SID, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            <div class="col-md-8 col-sm-8 col-xs-12 control-label text-left" style="padding-right:250px">
+                                @Html.DisplayFor(model => model.SID, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HoTen, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            <div class="col-md-8 col-sm-8 col-xs-12 control-label text-left" style="padding-right:250px">
+                                @Html.DisplayFor(model => model.HoTen, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NamSinh, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            <div class="col-md-8 col-sm-8 col-xs-12 control-label text-left" style="padding-right:250px">
+                                @Html.DisplayFor(model => model.NamSinh, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GioiTinh, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            <div class="col-md-8 col-sm-8 col-xs-12 control-label text-left" style="padding-right:250px">
+                                @if (Model.GioiTinh.ToString() == "True")
+                                {
+                                    <text>Nam</text>
+                                }
+                                else
+                                {
+                                    <text>Nữ</text>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiaChi, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            <div class="col-md-8 col-sm-8 col-xs-12 control-label text-left" style="padding-right:250px">
+                                @Html.DisplayFor(model => model.DiaChi, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SoTheBHYT, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            <div class="col-md-8 col-sm-8 col-xs-12 control-label text-left" style="padding-right:250px">
+                                @Html.DisplayFor(model => model.SoTheBHYT, new { @class = "col-md-4 col-sm-4 col-xs-12 control-label" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @Html.Action("_DetailAnalysis", new { id = Model.BenhNhanID })
+        <div class="form-group">
+            <div class="col-md-offset-10 col-md-10">
+                <input onclick="location.href='@Url.Action("Report",new {BenhNhanID=Model.BenhNhanID })'" id="print-result" disabled type="submit" value="In Kết Quả Xét Nghiệm" class="btn btn-warning" />
+            </div>
+        </div>
+        <div id="divAlert">
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".action").each(function (index) {
+            if ($(this).html().trim() == 'Đã Xét Nghiệm') {
+                $('#print-result').prop('disabled', false);
+            }
+        });
+    });
+
+</script>
